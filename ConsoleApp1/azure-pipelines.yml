@@ -10,11 +10,10 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  agentName: 'Azure Pipelines'
+  agentName: 'Default'
 
 pool:
   name: '$(agentName)'
-  vmImage: 'windows-latest'
 
 steps:
 - task: NuGetToolInstaller@1
