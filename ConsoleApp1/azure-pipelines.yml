@@ -13,6 +13,10 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  agentName: 'Azure Pipeline'
+
+pool:
+  name: '$(agentName)'
 
 steps:
 - task: NuGetToolInstaller@1
