@@ -6,17 +6,15 @@
 trigger:
 - main
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  agentName: 'Azure Pipeline'
+  agentName: 'Azure Pipelines'
 
 pool:
   name: '$(agentName)'
+  vmImage: 'windows-latest'
 
 steps:
 - task: NuGetToolInstaller@1
