@@ -2,6 +2,8 @@ name: $(TeamProject)_$(Build.DefinitionName)_$(Build.SourceBranch)_$(Date:yyyyMM
 
 steps:
   - script: echo '$(Build.BuildNumber)' # outputs customized build number like project_def_master_20200828.1
+  - script: echo "##vso[task.setvariable variable=mySecret;isSecret=true]sample-local-secret"
+    displayName: Seed Demo Secret
   - task: DotNetCoreCLI@2
     displayName: Build Project
     inputs:
@@ -10,6 +12,11 @@ steps:
   - task: CopyFiles@2
     displayName: Copy Binaries
     inputs:
-      SourceFolder: 'ConsoleApp1/bin/Debug/net5.0'
+      SourceFolder: 'ConsoleApp1/bin/Debug/net9.0'
       TargetFolder: '${Build.ArtifactStagingDirectory}/ConsoleApp1'
       Contents: 'ConsoleApp1.exe;ConsoleApp1.dll'
+  - script: |
+      dotnet run --project ConsoleApp1/ConsoleApp1.csproj
+    displayName: 'Run ConsoleApp1'
+    env:
+      MY_SECRET: $(mySecret)
