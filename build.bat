@@ -1,0 +1,1 @@
+dotnet run --project ..\LocalAgent\LocalAgent.csproj -- .\ConsoleApp1\pipeline.yml
